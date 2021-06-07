@@ -1,0 +1,20 @@
+{% block title %}Add new department{% endblock %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+  <form method="post"  action="">
+  <label> - Name </label><br></br>
+  <input type="text" name="name" placeholder="Saisir le nom"><br><br>
+  <label> - Sélection de la matière </label><br></br>
+  <select  name="domaine">
+  <option>-- Domaine --</option>
+  <option> Informatique </option>
+  <option> Gestion </option>
+  <option> Mathématiques </option>
+  </select><br></br>
+
+
+  <input type="submit" value="Cliquez pour ajouter">
+
+  </form>
+{% endblock %}
