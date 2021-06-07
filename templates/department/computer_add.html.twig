@@ -1,0 +1,17 @@
+{% block title %}Add new computer to department{% endblock %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+  <form method="post"  action="{{path('department_computer_add', {'departmentName': departmentName, 'departmentId': departmentId})}}">
+    <label> - MacAdress </label><br></br>
+    <input type="text" name="macAdress" placeholder=""><br><br>
+    <label> - Model </label><br></br>
+    <input type="text" name="model" placeholder=""><br><br>
+    <label> - System </label><br></br>
+    <input type="text" name="system" placeholder=""><br><br>
+    <label> - Purchase </label><br></br>
+    <input type="date" name="purchase" placeholder=""><br><br>
+    </select><br>
+    <input type="submit" value="Ajouter">
+  </form>
+{% endblock %}

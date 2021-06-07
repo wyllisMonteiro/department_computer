@@ -1,0 +1,25 @@
+{% block title %}List all computers{% endblock %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Model</th>
+        <th scope="col">Name System</th>
+        <th scope="col">Purchase</th>
+        <th scope="col">Name Department</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for computer in computers %} 
+        <tr>
+            <th scope="row">{{computer.model}}</th>
+            <td>{{computer.systemName}}</td>
+            <td>{{computer.purchase.format('Y-m-d')}}</td>
+            <td>{{computer.department.name}}</td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
