@@ -20,7 +20,8 @@
             <td>{{department.name}}</td>
             <td>{{department.domaine}}</td>
           
-            <td><a href="{{path('department_update',{'departmentId': department.id})}}">Modifier</a></td>
+            <td><a href="{{path('department_update', {'departmentId': department.id})}}">Modifier</a></td>
+            <td><a href="{{path('department_computer_add', {'departmentId': department.id, 'departementName': department.domaine})}}">Ajouter un Computer</a></td>
           </tr>
       {% endfor %}
     </tbody>

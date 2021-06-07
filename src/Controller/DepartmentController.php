@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Computer;
 use App\Entity\Department;
 use App\Repository\DepartmentRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,9 +37,9 @@ class DepartmentController extends AbstractController
             $connex->persist($depart);
             $connex->flush();
             return $this->redirectToRoute('department_list');
-        } else {
-            return $this->render('department/add.html.twig');
-        }
+        } 
+
+        return $this->render('department/add.html.twig');
     }
 
     /**
@@ -55,7 +56,7 @@ class DepartmentController extends AbstractController
     /**
      * @Route("/departments/{departmentId}/update", name="department_update")
      */
-    public function UpdateDepartment($departmentId, DepartmentRepository $repo, Request $req): Response
+    public function UpdateDepartment(string $departmentId, DepartmentRepository $repo, Request $req): Response
     {
         $department = $repo->find($departmentId);
         if ($req->isMethod('POST')) {
@@ -65,8 +66,41 @@ class DepartmentController extends AbstractController
             $conn->persist($department);
             $conn->flush();
             return $this->redirectToRoute('department_list');
-        } else {
-            return $this->render('department/update.html.twig', ['department' => $department]);
         }
+        
+        return $this->render('department/update.html.twig', ['department' => $department]);
+    }
+
+    /**
+     * @Route("/department/{departmentId}/computer/add", name="department_computer_add")
+     */
+
+    public function AddComputerToDepartment(string $departmentId, DepartmentRepository $repo, Request $req)
+    {
+        $departmentName = $req->query->get('departmentName');
+        if ($req->isMethod('POST')) {
+            $computer = new Computer();
+            $computer->setModel($req->get('model'));
+            $computer->setSystemName($req->get('system'));
+
+            $date = \DateTime::createFromFormat('Y-m-d', $req->get('purchase')); // la classe utilisée est native php
+            $computer->setPurchase($date);
+            $computer->setNameDepartment($departmentName);
+
+            $departement = $repo->find($departmentId);
+            $computer->setDepartment($departement);
+
+            $connex = $this->getDoctrine()->getManager();
+            $connex->persist($computer);
+            $connex->flush();
+
+            return $this->redirectToRoute('department_list');
+        }
+
+        return $this->render('department/computer_add.html.twig', 
+            [
+                'departmentName' => $departmentName, 
+                'departmentId' => $departmentId
+            ]);
     }
 }
