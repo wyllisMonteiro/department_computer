@@ -2,5 +2,27 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-  List
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id Departement</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Domaine</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for department in departments %} 
+        <tr>
+            <th scope="row">{{department.id}}</th>
+            <td>{{department.name}}</td>
+            <td>{{department.domaine}}</td>
+          
+            <td><a href="{{path('department_update',{'department_id': department.id})}}">Modifier</a></td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}
