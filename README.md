@@ -27,3 +27,7 @@ $ php bin/console doctrine:schema:update --force
 ```sh
 $ symfony server:start
 ```
+
+## License
+
+[MIT](https://github.com/wyllisMonteiro/department_computer/edit/main/LICENSE)
