@@ -1,0 +1,19 @@
+{% block title %}Update department{% endblock %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+  <form method="post">
+    <label> Nom </label><br></br>
+    <input type="text" name="name" value="{{department.name}}" placeholder="Saisir le nom"><br></br>
+    <label> Matière choisie </label><br></br>
+    <select type="text" name="domaine" value="{{department.domaine}}">
+    <option>-- Domaine --</option>
+    <option> Informatique </option>
+    <option> Gestion </option>
+    <option> Mathématiques </option>
+    </select> <br></br>
+    <input type="submit" value="Modifier votre choix"><br></br>
+    <label> id </label><br></br>
+    <input type="number" name="id" value="{{department.id}}" readOnly>
+  </form>
+{% endblock %}

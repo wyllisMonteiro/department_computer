@@ -53,14 +53,20 @@ class DepartmentController extends AbstractController
     }
 
     /**
-     * @Route("/departments/1/update", name="department_update")
+     * @Route("/departments/{departmentId}/update", name="department_update")
      */
-    public function UpdateDepartment(DepartmentRepository $repo, Request $req): Response
+    public function UpdateDepartment($departmentId, DepartmentRepository $repo, Request $req): Response
     {
+        $department = $repo->find($departmentId);
         if ($req->isMethod('POST')) {
-            return new Response(1);
+            $conn = $this->getDoctrine()->getManager();
+            $department->setName($req->get('name'));
+            $department->setDomaine($req->get('domaine'));
+            $conn->persist($department);
+            $conn->flush();
+            return $this->redirectToRoute('department_list');
         } else {
-            return new Response(1);
+            return $this->render('department/update.html.twig', ['department' => $department]);
         }
     }
 }
