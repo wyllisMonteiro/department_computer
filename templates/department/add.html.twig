@@ -2,11 +2,11 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-  <form method="post"  action="">
+  <form method="post" action="{{path('department_add')}}">
   <label> - Name </label><br></br>
-  <input type="text" name="name" placeholder="Saisir le nom"><br><br>
+  <input type="text" name="department_name" placeholder="Saisir le nom"><br><br>
   <label> - Sélection de la matière </label><br></br>
-  <select  name="domaine">
+  <select  name="department_domaine">
   <option>-- Domaine --</option>
   <option> Informatique </option>
   <option> Gestion </option>
